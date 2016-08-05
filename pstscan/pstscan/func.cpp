@@ -86,13 +86,15 @@ void CScan::getStartAndEndIP(char *host, startAndEndIP *mStartAndEndIP)
 	int num = 0;
 	std::string ip_list[2];
 	vector<string> splitStrs;
-	if (strstr(host, "-")){
+	if (strstr(host, "-"))
+	{
 		splitString(host, "-", splitStrs); //调用自定义的分割函数  
 
 		mStartAndEndIP->ipNum = splitStrs.size();//ip 个数
 
 		vector<string>::iterator iter;
-		for (iter = splitStrs.begin(); iter != splitStrs.end(); ++iter) {
+		for (iter = splitStrs.begin(); iter != splitStrs.end(); ++iter) 
+		{
 			//num = splitStrs.size();
 			ip_list[num++] = (string)*iter;
 		}
@@ -106,13 +108,22 @@ void CScan::getStartAndEndIP(char *host, startAndEndIP *mStartAndEndIP)
 /*ip to int 函数*/
 int CScan::ipToint( const char * ip )
 {
-	//std::cout << ntohl( inet_addr( ip ) ) << endl;
+	std::cout << ntohl( inet_addr( ip ) ) << endl;
 	return ntohl( inet_addr( ip ) );
 }
 
-/*int to ip 函数
- void inttoip( int ip_num, char *ip )
+/* int to ip 函数 */
+char* CScan::inttoip(DWORD ip_num)
 {
-    strcpy( ip, (char*)inet_ntoa( htonl( ip_num ) ) );
+	char ip[64];
+	WORD _ip[4];
+
+	_ip[0] = ((ip_num >> 24) & 0xFF);
+	_ip[1] = ((ip_num >> 16) & 0xFF);
+	_ip[2] = ((ip_num >> 8)  & 0xFF);
+	_ip[3] = (ip_num & 0xFF);
+
+	sprintf(ip,"%d.%d.%d.%d",_ip[0],_ip[1],_ip[2],_ip[3]);
+
+	return ip;
 }
-*/

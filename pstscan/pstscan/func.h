@@ -29,6 +29,7 @@ public:
 	int  splitString(const std::string & strSrc, const std::string& strDelims, vector<string>& strDest);
 	void getStartAndEndIP(char *host, startAndEndIP * mStartAndEndIP);
 	int ipToint( const char *ip );
+	char* inttoip(DWORD ip_num);
 
 	//然后放变量
 private:

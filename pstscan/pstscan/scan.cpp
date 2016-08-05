@@ -13,6 +13,7 @@ int main(int argc, char *argv[]) {
 	string _startIp;
 	string _endIp;
 	CScan * mScan = new CScan();
+	DWORD ipint = 3232235777;
 	/*·Ö¸î 192.168.1.1-192.168.1.254 ÄÃµ½ 192.168.1.1ºÍ192.168.1.254*/
 	
 	startAndEndIP mStartAndEndIp;
@@ -25,6 +26,7 @@ int main(int argc, char *argv[]) {
 	std::cout << _endIp << endl;
 	xxx = mScan->ipToint(_startIp.c_str()); //string to const char
 	//gethost();
-	getchar();
+	//getchar();
+	mScan->inttoip(ipint);
 	return 0;
 }
