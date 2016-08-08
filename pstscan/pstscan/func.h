@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include<Winsock2.h>
+#include <fstream>   //读写文件操作
 #pragma comment(lib,"ws2_32.lib")
 
 using namespace std;
@@ -29,7 +30,9 @@ public:
 	int  splitString(const std::string & strSrc, const std::string& strDelims, vector<string>& strDest);
 	void getStartAndEndIP(char *host, startAndEndIP * mStartAndEndIP);
 	int ipToint( const char *ip );
-	char* inttoip(DWORD ip_num);
+	char* intToip(DWORD ip_num);
+	void ReadDataFromFileLBLIntoCharArray(const char *file,string &strDest);
+
 
 	//然后放变量
 private:

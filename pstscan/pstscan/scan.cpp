@@ -7,11 +7,14 @@ int main(int argc, char *argv[]) {
 	char *host = "192.168.1.1-192.168.1.254";
 	//char szHostName[200];     //保存主机名
 	//host = argv[1];
-	//help();
-	DWORD xxx;
-	int num = 0;
+	
+	//DWORD xxx;
+	//int num = 0;
 	string _startIp;
 	string _endIp;
+	const char *file = "ip.txt";
+	string ip;
+	
 	CScan * mScan = new CScan();
 	DWORD ipint = 3232235777;
 	/*分割 192.168.1.1-192.168.1.254 拿到 192.168.1.1和192.168.1.254*/
@@ -24,9 +27,12 @@ int main(int argc, char *argv[]) {
 
 	std::cout << _startIp << endl;
 	std::cout << _endIp << endl;
-	xxx = mScan->ipToint(_startIp.c_str()); //string to const char
-	//gethost();
-	//getchar();
-	mScan->inttoip(ipint);
+	//xxx = mScan->ipToint(_startIp.c_str()); //string to const char
+
+	//mScan->intToip(ipint);
+	//mScan->help();
+	//mScan->ReadDataFromFileIntoString(file,ip);
+	mScan->ReadDataFromFileLBLIntoCharArray(file,ip);
+	
 	return 0;
 }

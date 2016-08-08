@@ -113,7 +113,7 @@ int CScan::ipToint( const char * ip )
 }
 
 /* int to ip 函数 */
-char* CScan::inttoip(DWORD ip_num)
+char* CScan::intToip( DWORD ip_num )
 {
 	char ip[64];
 	WORD _ip[4];
@@ -124,6 +124,20 @@ char* CScan::inttoip(DWORD ip_num)
 	_ip[3] = (ip_num & 0xFF);
 
 	sprintf(ip,"%d.%d.%d.%d",_ip[0],_ip[1],_ip[2],_ip[3]);
-
+	std::cout << ip <<std::endl;
 	return ip;
+}
+
+/* 从文本中逐行读取数据 */
+void CScan::ReadDataFromFileLBLIntoCharArray(const char *file,char* strDest)  
+{  
+    const int LINE_LENGTH = 255 ;
+	char str[LINE_LENGTH];
+
+	ifstream fin(file);  
+    while( fin.getline(str,LINE_LENGTH) )  
+    {      
+        cout << str << endl;   
+    }
+	return str;
 }
