@@ -129,15 +129,36 @@ char* CScan::intToip( DWORD ip_num )
 }
 
 /* 从文本中逐行读取数据 */
-void CScan::ReadDataFromFileLBLIntoCharArray(const char *file,char* strDest)  
+void CScan::ReadDataFromFileLBLIntoCharArray(const char *file, char *strDest)
 {  
-    const int LINE_LENGTH = 255 ;
-	char str[LINE_LENGTH];
+   
+	int i;
+	long size;
+	fstream File;
 
-	ifstream fin(file);  
-    while( fin.getline(str,LINE_LENGTH) )  
-    {      
-        cout << str << endl;   
-    }
-	return str;
+	File.open(file, ios::out | ios::in | ios::binary | ios::ate);
+	size = File.tellg();
+
+	if (!File.is_open())        //如果文件没有打开，它将返回0(false)；如果文件已经打开，它将返回1 (true)
+	{
+		cerr << "文件打开失败！" << endl;
+		exit(0);
+	}
+	char * buffer;
+
+	File.seekg(0, ios::beg);
+	buffer = new char[size];
+	File.read(buffer, size);
+
+	for (i = 0; i < size; i++)
+	{
+		cout << buffer[i];
+		strDest[i] = buffer[i];
+	}
+	cout << endl;
+	cout << "the complete file is in a buffer" << endl << endl;
+
+	delete[] buffer;
+
+	File.close();
 }

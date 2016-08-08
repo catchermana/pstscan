@@ -13,7 +13,9 @@ int main(int argc, char *argv[]) {
 	string _startIp;
 	string _endIp;
 	const char *file = "ip.txt";
-	string ip;
+	char ip[65536];
+
+	int ipNum = 0;
 	
 	CScan * mScan = new CScan();
 	DWORD ipint = 3232235777;
@@ -25,14 +27,18 @@ int main(int argc, char *argv[]) {
 	_startIp = mStartAndEndIp.startIp;
 	_endIp = mStartAndEndIp.endIp;
 
-	std::cout << _startIp << endl;
-	std::cout << _endIp << endl;
+	//std::cout << _startIp << endl;
+	//std::cout << _endIp << endl;
 	//xxx = mScan->ipToint(_startIp.c_str()); //string to const char
 
 	//mScan->intToip(ipint);
 	//mScan->help();
 	//mScan->ReadDataFromFileIntoString(file,ip);
 	mScan->ReadDataFromFileLBLIntoCharArray(file,ip);
+	for (int i = 0; i < ipNum; ++i )
+	{
+		cout << ip[i] << endl;
+	}
 	
 	return 0;
 }

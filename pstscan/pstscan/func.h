@@ -31,7 +31,7 @@ public:
 	void getStartAndEndIP(char *host, startAndEndIP * mStartAndEndIP);
 	int ipToint( const char *ip );
 	char* intToip(DWORD ip_num);
-	void ReadDataFromFileLBLIntoCharArray(const char *file,string &strDest);
+	void ReadDataFromFileLBLIntoCharArray(const char *file,char* strDest);
 
 
 	//然后放变量
