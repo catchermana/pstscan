@@ -21,14 +21,13 @@ void CScan::help()
 		<< "\t-t timeout    : timed out in ms, default: 10" << '\n'
 		<< "\t-s sleeptime  : sleep ms during ip, default: 10" << '\n'
 		<< "\t-v            : verbose mode, more information" << '\n'
+		<< "\t-p            : port" << '\n'
 		<< std::endl;
 
 	cout << "<Plugins>:" << '\n'
+		<< "\t-rdp          : rdp accounts scan" << '\n'
 		<< "\t-ipc (-admin) : ipc accounts scan" << '\n'
-		<< "\t-ftp          : ftp accounts scan" << '\n'
-		<< "\t-pop3         : pop3 accounts scan" << '\n'
 		<< "\t-ssh          : imap accounts scan" << '\n'
-		<< "\t-mail         : mail accounts scan" << '\n'
 		<< "\t-mssql        : mssql accounts scan" << '\n'
 		<< "\t-mysql        : mysql accounts scan" << '\n'
 		<< "\t-middle       : midlle vulnerabilities scan" << '\n'
@@ -81,6 +80,7 @@ DWORD CScan::gethost()
 	return endIp - startIp;
 }
 
+/*分割 192.168.1.1-192.168.1.254 拿到 192.168.1.1和192.168.1.254*/
 void CScan::getStartAndEndIP(char *host, startAndEndIP *mStartAndEndIP)
 {
 	int num = 0;
@@ -108,7 +108,7 @@ void CScan::getStartAndEndIP(char *host, startAndEndIP *mStartAndEndIP)
 /*ip to int 函数*/
 int CScan::ipToint( const char * ip )
 {
-	std::cout << ntohl( inet_addr( ip ) ) << endl;
+	//std::cout << ntohl( inet_addr( ip ) ) << endl;
 	return ntohl( inet_addr( ip ) );
 }
 
@@ -124,11 +124,10 @@ char* CScan::intToip( DWORD ip_num )
 	_ip[3] = (ip_num & 0xFF);
 
 	sprintf(ip,"%d.%d.%d.%d",_ip[0],_ip[1],_ip[2],_ip[3]);
-	std::cout << ip <<std::endl;
 	return ip;
 }
 
-/* 从文本中逐行读取数据 */
+/* 从文本中读取数据 */
 void CScan::ReadDataFromFileLBLIntoCharArray(const char *file, char *strDest)
 {  
    
@@ -155,10 +154,14 @@ void CScan::ReadDataFromFileLBLIntoCharArray(const char *file, char *strDest)
 		cout << buffer[i];
 		strDest[i] = buffer[i];
 	}
-	cout << endl;
-	cout << "the complete file is in a buffer" << endl << endl;
+	//cout << endl;
+	//cout << "the complete file is in a buffer" << endl << endl;
 
 	delete[] buffer;
 
 	File.close();
 }
+
+
+
+
